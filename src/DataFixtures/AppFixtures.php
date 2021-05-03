@@ -92,44 +92,43 @@ class AppFixtures extends Fixture
 
         /**** Clients ****/
         $client1 = new Client();
-        $client1->setName()
-            ->setStatus()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setSiret()
-            ->setSiren()
-            ->setRcs()
-            ->setVatNumber()
+        $client1->setName('Party Phone')
+            ->setStatus(1)
+            ->setAddress('18 rue des Acacias')
+            ->setZip('87000')
+            ->setTown('Limoges')
+            ->setCountry('France')
+            ->setSiret('49400468500024')
+            ->setSiren('494004685')
+            ->setRcs('Paris A 494 004 685')
+            ->setVatNumber('FR78494004862')
             ->setApiKey()
             ->setSecret()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT6H56M10S')))
+            ->setUpdatedDate($client1->getCreatedDate()->add(new DateInterval('P2DT12H26M25S')))
         ;
         $manager->persist($client1);
 
         $client2 = new Client();
-        $client2->setName()
-            ->setStatus()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setSiret()
-            ->setSiren()
-            ->setRcs()
-            ->setVatNumber()
+        $client2->setName('ElectroDiscount')
+            ->setStatus(1)
+            ->setAddress('26 Avenue du faubourg')
+            ->setZip('67000')
+            ->setTown('Strasbourg')
+            ->setCountry('France')
+            ->setSiret('58200548500045')
+            ->setSiren('582005485')
+            ->setRcs('Strasbourg B 582 005 485')
+            ->setVatNumber('FR26494005462')
             ->setApiKey()
             ->setSecret()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT14H34M10S')))
         ;
         $manager->persist($client2);
 
         $client3 = new Client();
-        $client3->setName()
-            ->setStatus()
+        $client3->setName('Fnarty')
+            ->setStatus(1)
             ->setAddress()
             ->setZip()
             ->setTown()
@@ -147,7 +146,7 @@ class AppFixtures extends Fixture
 
         /**** Users ****/
         $user1 = new User();
-        $user1->setClientId()
+        $user1->setClientId($client3->getId())
             ->setFirstName()
             ->setLastName()
             ->setEmail()
@@ -162,7 +161,7 @@ class AppFixtures extends Fixture
         $manager->persist($user1);
 
         $user1 = new User();
-        $user1->setClientId()
+        $user1->setClientId($client2->getId())
             ->setFirstName()
             ->setLastName()
             ->setEmail()
@@ -177,7 +176,7 @@ class AppFixtures extends Fixture
         $manager->persist($user1);
 
         $user2 = new User();
-        $user2->setClientId()
+        $user2->setClientId($client1->getId())
             ->setFirstName()
             ->setLastName()
             ->setEmail()
@@ -192,7 +191,7 @@ class AppFixtures extends Fixture
         $manager->persist($user2);
 
         $user3 = new User();
-        $user3->setClientId()
+        $user3->setClientId($client3->getId())
             ->setFirstName()
             ->setLastName()
             ->setEmail()
@@ -207,7 +206,7 @@ class AppFixtures extends Fixture
         $manager->persist($user3);
 
         $user4 = new User();
-        $user4->setClientId()
+        $user4->setClientId($client1->getId())
             ->setFirstName()
             ->setLastName()
             ->setEmail()
@@ -222,7 +221,7 @@ class AppFixtures extends Fixture
         $manager->persist($user4);
 
         $user5 = new User();
-        $user5->setClientId()
+        $user5->setClientId($client2->getId())
             ->setFirstName()
             ->setLastName()
             ->setEmail()
