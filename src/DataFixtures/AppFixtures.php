@@ -102,8 +102,8 @@ class AppFixtures extends Fixture
             ->setSiren('494004685')
             ->setRcs('Paris A 494 004 685')
             ->setVatNumber('FR78494004862')
-            ->setApiKey()
-            ->setSecret()
+            ->setApiKey('1234567890123456789012345678901234567890')
+            ->setSecret('secret1')
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT6H56M10S')))
             ->setUpdatedDate($client1->getCreatedDate()->add(new DateInterval('P2DT12H26M25S')))
         ;
@@ -120,8 +120,8 @@ class AppFixtures extends Fixture
             ->setSiren('582005485')
             ->setRcs('Strasbourg B 582 005 485')
             ->setVatNumber('FR26494005462')
-            ->setApiKey()
-            ->setSecret()
+            ->setApiKey('1234567890123456789012345678901234567891')
+            ->setSecret('secret2')
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT14H34M10S')))
         ;
         $manager->persist($client2);
@@ -137,8 +137,8 @@ class AppFixtures extends Fixture
             ->setSiren('582005485')
             ->setRcs('Toulouse A 582 005 485')
             ->setVatNumber('FR37564005324')
-            ->setApiKey()
-            ->setSecret()
+            ->setApiKey('1234567890123456789012345678901234567892')
+            ->setSecret('secret3')
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P4DT10H27M10S')))
             ->setUpdatedDate($client3->getCreatedDate()->add(new DateInterval('P1DT15H26M25S')))
         ;
@@ -146,7 +146,7 @@ class AppFixtures extends Fixture
 
         /**** Users ****/
         $user1 = new User();
-        $user1->setClientId($client3->getId())
+        $user1->setClient($client3)
             ->setFirstName('Jason')
             ->setLastName('Ray')
             ->setEmail('jason.ray@example.com')
@@ -160,7 +160,7 @@ class AppFixtures extends Fixture
         $manager->persist($user1);
 
         $user2 = new User();
-        $user2->setClientId($client1->getId())
+        $user2->setClient($client1)
             ->setFirstName('Jeanne')
             ->setLastName('Nguyen')
             ->setEmail('jeanne.nguyen@example.com')
@@ -169,13 +169,13 @@ class AppFixtures extends Fixture
             ->setZip(56000)
             ->setTown('Lorient')
             ->setCountry('France')
-            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT7h20M10S')))
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT7H20M10S')))
             ->setUpdatedDate($user2->getCreatedDate()->add(new DateInterval('P4DT16H24M25S')))
         ;
         $manager->persist($user2);
 
         $user3 = new User();
-        $user3->setClientId($client3->getId())
+        $user3->setClient($client3)
             ->setFirstName('Hugh')
             ->setLastName('Fernandez')
             ->setEmail('hugh.fernandez@example.com')
@@ -189,7 +189,7 @@ class AppFixtures extends Fixture
         $manager->persist($user3);
 
         $user4 = new User();
-        $user4->setClientId($client1->getId())
+        $user4->setClient($client1)
             ->setFirstName('Mike')
             ->setLastName('Schmidt')
             ->setEmail('mike.schmidt@example.com')
@@ -198,12 +198,12 @@ class AppFixtures extends Fixture
             ->setZip(75000)
             ->setTown('Paris')
             ->setCountry('France')
-            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT10h45M10S')))
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT10H45M10S')))
         ;
         $manager->persist($user4);
 
         $user5 = new User();
-        $user5->setClientId($client2->getId())
+        $user5->setClient($client2)
             ->setFirstName('Carter')
             ->setLastName('Jensen')
             ->setEmail('carter.jensen@example.com')
@@ -212,7 +212,7 @@ class AppFixtures extends Fixture
             ->setZip(13000)
             ->setTown('Marseille')
             ->setCountry('France')
-            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT18h36M10S')))
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT18H36M10S')))
             ->setUpdatedDate($user5->getCreatedDate()->add(new DateInterval('P3DT9H56M25S')))
         ;
         $manager->persist($user5);
