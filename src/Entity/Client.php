@@ -86,12 +86,12 @@ class Client
     private $createdDate;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedDate;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="clientId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="client", orphanRemoval=true)
      */
     private $users;
 
@@ -285,7 +285,7 @@ class Client
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setClientId($this);
+            $user->setClient($this);
         }
 
         return $this;
@@ -295,8 +295,8 @@ class Client
     {
         if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($user->getClientId() === $this) {
-                $user->setClientId(null);
+            if ($user->getClient() === $this) {
+                $user->setClient(null);
             }
         }
 

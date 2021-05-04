@@ -22,7 +22,7 @@ class User
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $clientId;
+    private $client;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -79,14 +79,14 @@ class User
         return $this->id;
     }
 
-    public function getClientId(): ?Client
+    public function getClient(): ?Client
     {
-        return $this->clientId;
+        return $this->client;
     }
 
-    public function setClientId(?Client $clientId): self
+    public function setClient(?Client $client): self
     {
-        $this->clientId = $clientId;
+        $this->client = $client;
 
         return $this;
     }
