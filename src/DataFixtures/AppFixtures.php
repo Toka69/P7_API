@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
             ->setRcs('Paris A 494 004 685')
             ->setVatNumber('FR78494004862')
             ->setApiKey('1234567890123456789012345678901234567890')
-            ->setSecret('secret1')
+            ->setPassword('secret1')
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT6H56M10S')))
             ->setUpdatedDate($client1->getCreatedDate()->add(new DateInterval('P2DT12H26M25S')))
         ;
@@ -121,7 +121,7 @@ class AppFixtures extends Fixture
             ->setRcs('Strasbourg B 582 005 485')
             ->setVatNumber('FR26494005462')
             ->setApiKey('1234567890123456789012345678901234567891')
-            ->setSecret('secret2')
+            ->setPassword('secret2')
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT14H34M10S')))
         ;
         $manager->persist($client2);
@@ -138,7 +138,7 @@ class AppFixtures extends Fixture
             ->setRcs('Toulouse A 582 005 485')
             ->setVatNumber('FR37564005324')
             ->setApiKey('1234567890123456789012345678901234567892')
-            ->setSecret('secret3')
+            ->setPassword('secret3')
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P4DT10H27M10S')))
             ->setUpdatedDate($client3->getCreatedDate()->add(new DateInterval('P1DT15H26M25S')))
         ;
