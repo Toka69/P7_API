@@ -129,50 +129,34 @@ class AppFixtures extends Fixture
         $client3 = new Client();
         $client3->setName('Fnarty')
             ->setStatus(1)
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setSiret()
-            ->setSiren()
-            ->setRcs()
-            ->setVatNumber()
+            ->setAddress('12 Rue des Alpes')
+            ->setZip('31000')
+            ->setTown('Toulouse')
+            ->setCountry('France')
+            ->setSiret('5820054850036')
+            ->setSiren('582005485')
+            ->setRcs('Toulouse A 582 005 485')
+            ->setVatNumber('FR37564005324')
             ->setApiKey()
             ->setSecret()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P4DT10H27M10S')))
+            ->setUpdatedDate($client3->getCreatedDate()->add(new DateInterval('P1DT15H26M25S')))
         ;
         $manager->persist($client3);
 
         /**** Users ****/
         $user1 = new User();
         $user1->setClientId($client3->getId())
-            ->setFirstName()
-            ->setLastName()
-            ->setEmail()
-            ->setPhone()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setFirstName('Jason')
+            ->setLastName('Ray')
+            ->setEmail('jason.ray@example.com')
+            ->setPhone('0658754256')
+            ->setAddress('26 rue des framboisiers')
+            ->setZip('38000')
+            ->setTown('Grenoble')
+            ->setCountry('France')
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P4DT10H27M10S')))
             ;
-        $manager->persist($user1);
-
-        $user1 = new User();
-        $user1->setClientId($client2->getId())
-            ->setFirstName()
-            ->setLastName()
-            ->setEmail()
-            ->setPhone()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setCreatedDate()
-            ->setUpdatedDate()
-        ;
         $manager->persist($user1);
 
         $user2 = new User();
@@ -185,53 +169,51 @@ class AppFixtures extends Fixture
             ->setZip()
             ->setTown()
             ->setCountry()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT7h20M10S')))
+            ->setUpdatedDate($user2->getCreatedDate()->add(new DateInterval('P4DT16H24M25S')))
         ;
         $manager->persist($user2);
 
         $user3 = new User();
         $user3->setClientId($client3->getId())
-            ->setFirstName()
-            ->setLastName()
-            ->setEmail()
-            ->setPhone()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setFirstName('Hugh')
+            ->setLastName('Fernandez')
+            ->setEmail('hugh.fernandez@example.com')
+            ->setPhone('0658745632')
+            ->setAddress('4 rue des abroges')
+            ->setZip('33000')
+            ->setTown('Bordeaux')
+            ->setCountry('France')
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P4DT11H16M10S')))
         ;
         $manager->persist($user3);
 
         $user4 = new User();
         $user4->setClientId($client1->getId())
-            ->setFirstName()
-            ->setLastName()
-            ->setEmail()
-            ->setPhone()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setFirstName('Mike')
+            ->setLastName('Schmidt')
+            ->setEmail('mike.schmidt@example.com')
+            ->setPhone('0656321478')
+            ->setAddress('15 Boulevard des peupliers')
+            ->setZip('75000')
+            ->setTown('Paris')
+            ->setCountry('France')
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT10h45M10S')))
         ;
         $manager->persist($user4);
 
         $user5 = new User();
         $user5->setClientId($client2->getId())
-            ->setFirstName()
-            ->setLastName()
-            ->setEmail()
-            ->setPhone()
-            ->setAddress()
-            ->setZip()
-            ->setTown()
-            ->setCountry()
-            ->setCreatedDate()
-            ->setUpdatedDate()
+            ->setFirstName('Carter')
+            ->setLastName('Jensen')
+            ->setEmail('carter.jensen@example.com')
+            ->setPhone('0658497562')
+            ->setAddress('28 Avenue des Acacias')
+            ->setZip('13000')
+            ->setTown('Marseille')
+            ->setCountry('France')
+            ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT18h36M10S')))
+            ->setUpdatedDate($user5->getCreatedDate()->add(new DateInterval('P3DT9H56M25S')))
         ;
         $manager->persist($user5);
 
