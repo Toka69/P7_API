@@ -16,7 +16,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "normalization_context"={"groups"={"products_read"}}
  *          }
  *     },
- *     itemOperations={"GET"}
+ *     itemOperations={
+ *          "get"={
+ *          "method"="GET",
+ *          "normalization_context"={"groups"={"product_read"}}
+ *          }
+ *     }
  * )
  */
 class Product
@@ -26,38 +31,45 @@ class Product
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups("products_read")
+     * @Groups("product_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("products_read")
+     * @Groups("product_read")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("product_read")
      */
     private $manufacturer;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("product_read")
      */
     private $model;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("product_read")
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups("products_read")
+     * @Groups("product_read")
      */
     private $price;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups("product_read")
      */
     private $tva;
 
