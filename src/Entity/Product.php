@@ -5,13 +5,19 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  * @ApiResource(
- *     collectionOperations={"GET"},
+ *     collectionOperations={
+ *          "get"={
+ *          "method"="GET",
+ *          "normalization_context"={"groups"={"products_read"}}
+ *          }
+ *     },
  *     itemOperations={"GET"}
- *     )
+ * )
  */
 class Product
 {
@@ -19,11 +25,13 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("products_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("products_read")
      */
     private $name;
 
@@ -44,6 +52,7 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("products_read")
      */
     private $price;
 
