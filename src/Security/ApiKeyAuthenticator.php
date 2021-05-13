@@ -41,9 +41,9 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 
     public function getCredentials(Request $request)
     {
-        $token = $request->headers->get('apiKey');
         return [
-            'apiKey' => $token
+            'apiKey' => $request->headers->get('apiKey'),
+            'password' => $request->headers->get('X-Auth-Token')
         ];
     }
 
@@ -54,8 +54,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-//        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
-        return $user instanceof Client && $credentials['apiKey'] = $user->getApiKey();
+        return $user instanceof Client && $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
