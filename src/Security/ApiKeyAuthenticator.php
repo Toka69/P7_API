@@ -36,14 +36,12 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 
     public function supports(Request $request)
     {
-        $auth = $request->headers->get('Authorization');
-
-        return $auth && stripos($auth, 'Bearer') === 0;
+        return $request->headers->get('apiKey');
     }
 
     public function getCredentials(Request $request)
     {
-        $token = str_replace('Bearer ', '', $request->headers->get('Authorization'));
+        $token = $request->headers->get('apiKey');
         return [
             'apiKey' => $token
         ];
