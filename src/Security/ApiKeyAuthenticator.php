@@ -5,6 +5,7 @@ namespace App\Security;
 
 
 use App\Entity\Client;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +18,14 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 {
-    protected UserPasswordEncoderInterface $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    private JWTTokenManagerInterface $JWTTokenManager;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, JWTTokenManagerInterface $JWTTokenManager)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->JWTTokenManager = $JWTTokenManager;
     }
 
     public function start(Request $request, AuthenticationException $authException = null)
@@ -68,7 +72,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
-        return null;
+        return new JsonResponse(['token' => $this->JWTTokenManager->create($token->getUser())]);
     }
 
     public function supportsRememberMe()
