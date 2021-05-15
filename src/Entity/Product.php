@@ -30,15 +30,13 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("products_read")
-     * @Groups("product_read")
+     * @Groups({"products_read", "product_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("products_read")
-     * @Groups("product_read")
+     * @Groups({"products_read", "product_read"})
      */
     private $name;
 
@@ -62,8 +60,7 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups("products_read")
-     * @Groups("product_read")
+     * @Groups({"products_read", "product_read"})
      */
     private $price;
 

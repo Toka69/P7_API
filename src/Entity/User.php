@@ -6,10 +6,24 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get"={
+ *          "method"="GET",
+ *          "normalization_context"={"groups"={"users_read"}}
+ *          }
+ *     },
+ *     itemOperations={
+ *          "get"={
+ *          "method"="GET",
+ *          "normalization_context"={"groups"={"user_read"}}
+ *          }
+ *     }
+ * )
  */
 class User
 {
@@ -17,6 +31,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("users_read")
      */
     private $id;
 
@@ -28,41 +43,49 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users_read", "user_read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users_read", "user_read"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users_read", "user_read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("users_read")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("users_read")
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("users_read")
      */
     private $zip;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("users_read")
      */
     private $town;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("users_read")
      */
     private $country;
 
