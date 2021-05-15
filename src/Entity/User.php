@@ -103,6 +103,11 @@ class User
      */
     private $updatedDate;
 
+    public function __construct()
+    {
+        $this->createdDate = new DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
