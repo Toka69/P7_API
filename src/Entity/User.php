@@ -15,13 +15,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "get"={
  *          "method"="GET",
  *          "normalization_context"={"groups"={"users_read"}}
- *          }
+ *          },
+ *          "post"
  *     },
  *     itemOperations={
  *          "get"={
  *          "method"="GET",
  *          "normalization_context"={"groups"={"user_read"}}
- *          }
+ *          },
+ *          "put",
+ *          "delete",
+ *          "patch"
  *     }
  * )
  */
@@ -31,7 +35,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("users_read")
+     * @Groups({"users_read", "user_read"})
      */
     private $id;
 
@@ -61,31 +65,31 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("users_read")
+     * @Groups("user_read")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("users_read")
+     * @Groups("user_read")
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("users_read")
+     * @Groups("user_read")
      */
     private $zip;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("users_read")
+     * @Groups("user_read")
      */
     private $town;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("users_read")
+     * @Groups("user_read")
      */
     private $country;
 
