@@ -10,4 +10,6 @@
 ###< symfony/framework-bundle ###
 
 /migrations/*
-/config/jwt/
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

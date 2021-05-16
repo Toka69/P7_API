@@ -10,10 +10,18 @@ use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Exception;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
     protected DateInterval $invertDateInterval;
+
+    protected UserPasswordEncoderInterface $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
 
     /**
      * @throws Exception
@@ -92,6 +100,7 @@ class AppFixtures extends Fixture
 
         /**** Clients ****/
         $client1 = new Client();
+        $hash = $this->encoder->encodePassword($client1, "secret1");
         $client1->setName('Party Phone')
             ->setStatus(1)
             ->setAddress('18 rue des Acacias')
@@ -103,13 +112,14 @@ class AppFixtures extends Fixture
             ->setRcs('Paris A 494 004 685')
             ->setVatNumber('FR78494004862')
             ->setApiKey('1234567890123456789012345678901234567890')
-            ->setPassword('secret1')
+            ->setPassword($hash)
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P6DT6H56M10S')))
             ->setUpdatedDate($client1->getCreatedDate()->add(new DateInterval('P2DT12H26M25S')))
         ;
         $manager->persist($client1);
 
         $client2 = new Client();
+        $hash = $this->encoder->encodePassword($client2, "secret2");
         $client2->setName('ElectroDiscount')
             ->setStatus(1)
             ->setAddress('26 Avenue du faubourg')
@@ -121,12 +131,13 @@ class AppFixtures extends Fixture
             ->setRcs('Strasbourg B 582 005 485')
             ->setVatNumber('FR26494005462')
             ->setApiKey('1234567890123456789012345678901234567891')
-            ->setPassword('secret2')
+            ->setPassword($hash)
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P5DT14H34M10S')))
         ;
         $manager->persist($client2);
 
         $client3 = new Client();
+        $hash = $this->encoder->encodePassword($client3, "secret3");
         $client3->setName('Fnarty')
             ->setStatus(1)
             ->setAddress('12 Rue des Alpes')
@@ -138,7 +149,7 @@ class AppFixtures extends Fixture
             ->setRcs('Toulouse A 582 005 485')
             ->setVatNumber('FR37564005324')
             ->setApiKey('1234567890123456789012345678901234567892')
-            ->setPassword('secret3')
+            ->setPassword($hash)
             ->setCreatedDate((new DateTimeImmutable())->add($this->invertDateInterval('P4DT10H27M10S')))
             ->setUpdatedDate($client3->getCreatedDate()->add(new DateInterval('P1DT15H26M25S')))
         ;
