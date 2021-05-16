@@ -10,3 +10,4 @@
 ###< symfony/framework-bundle ###
 
 /migrations/*
+/config/jwt/
