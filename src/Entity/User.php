@@ -28,7 +28,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "patch"
  *     }
  * )
- * @ORM\HasLifecycleCallbacks()
  */
 class User
 {
@@ -103,6 +102,11 @@ class User
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedDate;
+
+    public function __construct()
+    {
+        $this->createdDate = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -222,12 +226,11 @@ class User
         return $this->createdDate;
     }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedDate()
+    public function setCreatedDate(DateTimeImmutable $createdDate): self
     {
-        $this->createdDate = new DateTimeImmutable();
+        $this->createdDate = $createdDate;
+
+        return $this;
     }
 
     public function getUpdatedDate(): ?DateTimeImmutable
