@@ -146,9 +146,9 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
-        return $this->price;
+        return number_format($this->price/100, 2);
     }
 
     public function setPrice(int $price): self
