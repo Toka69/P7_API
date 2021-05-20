@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -37,36 +39,42 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"products_read", "product_read"})
+     * @Assert\NotBlank(message="Name is required!")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("product_read")
+     * @Assert\NotBlank(message="Manufacturer is required!")
      */
     private $manufacturer;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("product_read")
+     * @Assert\NotBlank(message="Model is required!")
      */
     private $model;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("product_read")
+     * @Assert\NotBlank(message="Description is required!")
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"products_read", "product_read"})
+     * @Assert\NotBlank(message="Price is required!")
      */
     private $price;
 
     /**
      * @ORM\Column(type="float")
      * @Groups("product_read")
+     * @Assert\NotBlank(message="TVA is required!")
      */
     private $tva;
 
@@ -79,6 +87,11 @@ class Product
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedDate;
+
+    public function __construct()
+    {
+        $this->createdDate = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
