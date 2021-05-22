@@ -76,7 +76,9 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "php-webdriver/webdriver": "^1.11",
         "symfony/maker-bundle": "^1.30",
+        "symfony/panther": "^1.0",
         "symfony/phpunit-bridge": "^5.2"
     }
 }
