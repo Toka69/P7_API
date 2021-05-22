@@ -16,22 +16,22 @@ security-checker:
   stage: securityChecker
   script:
     - local-php-security-checker  --path=./composer.lock
-  allow_failure: true
+  allow_failure: false
 
 phpcs:
   stage: CodingStandards
   script:
     - phpcs -v --standard=PSR12 --ignore=./src/Kernel.php ./src
-  allow_failure: true
+  allow_failure: false
 
 phpstan:
   stage: CodingStandards
   script:
     - phpstan analyse ./src
-  allow_failure: true
+  allow_failure: false
 
 phpunit:
   stage: UnitTests
   script:
     - php bin/phpunit
-  allow_failure: true
+  allow_failure: false
