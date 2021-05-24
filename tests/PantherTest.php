@@ -4,7 +4,7 @@ namespace App\Tests;
 
 use Symfony\Component\Panther\PantherTestCase;
 
-class FunctionalTest extends PantherTestCase
+class PantherTest extends PantherTestCase
 {
     public function testAnonymousUserCantAccessProducts():void
     {
