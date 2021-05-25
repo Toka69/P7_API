@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -48,48 +49,61 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read", "user_read"})
+     * @Assert\NotBlank(message="Firstname is required!")
+     * @Assert\Length(min=3, max=255, minMessage="The user's firstname must be at least 3 characters long.")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read", "user_read"})
+     * @Assert\NotBlank(message="Lastname is required!")
+     * @Assert\Length(min=3, max=255, minMessage="The user's lastename must be at least 3 characters long.")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read", "user_read"})
+     * @Assert\Email(message= "The email '{{ value }}' is not a valid email.")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("user_read")
+     * @Assert\NotBlank(message="Phone is required!")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("user_read")
+     * @Assert\NotBlank(message="Address is required!")
+     * @Assert\Length(min=3, max=255, minMessage="The user's name must be at least 3 characters long.")
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("user_read")
+     * @Assert\NotBlank(message="Zip is required!")
      */
     private $zip;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("user_read")
+     * @Assert\NotBlank(message="Town is required!")
+     * @Assert\Length(min=3, max=255, minMessage="The town must be at least 3 characters long.")
      */
     private $town;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("user_read")
+     * @Assert\NotBlank(message="Country is required!")
+     * @Assert\Length(min=2, max=255, minMessage="The country must be at least 3 characters long.")
      */
     private $country;
 
