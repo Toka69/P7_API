@@ -13,3 +13,9 @@
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+
+.phpunit
+/.phpunit.result.cache
+/drivers/chromedriver
+/build/Dockerfile-Ubuntu
+/tests/resultTest.php
