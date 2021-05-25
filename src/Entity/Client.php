@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -20,67 +22,80 @@ class Client implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="apiKey is required!")
      */
     private $apiKey;
 
     /**
      * @ORM\Column(type="json")
+     * @Assert\NotBlank(message="Role is required!")
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="password is required!")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Name is required!")
      */
     private $name;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="Status is required!")
      */
     private $status;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Address is required!")
      */
     private $address;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Zip is required!")
      */
     private $zip;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Town is required!")
      */
     private $town;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Country is required!")
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Siret is required!")
      */
     private $siret;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Siren is required!")
      */
     private $siren;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Rcs is required!")
      */
     private $rcs;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="VAT number is required!")
      */
     private $vatNumber;
 
@@ -93,6 +108,11 @@ class Client implements UserInterface
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedDate;
+
+    public function __construct()
+    {
+        $this->createdDate = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
