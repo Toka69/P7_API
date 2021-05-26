@@ -3,18 +3,21 @@ FROM php:7.4
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 #PHP extensions
-RUN install-php-extensions mysqli pdo_mysql xdebug intl @composer
+RUN install-php-extensions mysqli pdo_mysql xdebug intl zip @composer
 
 #Install GIT and ZIP
-RUN apt-get update -y && \
-    apt-get install git -y && \
-    git clone https://github.com/xdebug/xdebug
-RUN apt-get install zip -y && \
-    apt-get install unzip -y
+RUN apt update -y && \
+    apt install git zip unzip wget -y
 
 #Install Symfony CLI
-RUN apt-get install wget -y && \
-    wget https://get.symfony.com/cli/installer -O - | bash && \
+RUN wget https://get.symfony.com/cli/installer -O - | bash && \
     mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+#Install Panther
+RUN apt install -y zlib1g-dev chromium
+ENV PANTHER_NO_SANDBOX 1
+RUN composer require symfony/panther --dev && \
+    composer require --dev dbrekelmans/bdi && \
+    vendor/bin/bdi detect drivers
 
 WORKDIR workspaces/p7/

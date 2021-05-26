@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Events;
-
 
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\User;
@@ -23,7 +21,7 @@ class UserClientSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::VIEW => ['setClientForUser', EventPriorities::PRE_VALIDATE]
+            KernelEvents::VIEW => ['setClientForUser', EventPriorities::PRE_VALIDATE],
         ];
     }
 
@@ -32,8 +30,7 @@ class UserClientSubscriber implements EventSubscriberInterface
         $user = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if($user instanceof User && $method === "POST")
-        {
+        if ($user instanceof User && 'POST' === $method) {
             $client = $this->security->getUser();
             $user->setClient($client);
         }

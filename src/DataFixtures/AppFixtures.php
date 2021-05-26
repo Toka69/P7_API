@@ -100,7 +100,7 @@ class AppFixtures extends Fixture
 
         /**** Clients ****/
         $client1 = new Client();
-        $hash = $this->encoder->encodePassword($client1, "secret1");
+        $hash = $this->encoder->encodePassword($client1, 'secret1');
         $client1->setName('Party Phone')
             ->setStatus(1)
             ->setAddress('18 rue des Acacias')
@@ -119,7 +119,7 @@ class AppFixtures extends Fixture
         $manager->persist($client1);
 
         $client2 = new Client();
-        $hash = $this->encoder->encodePassword($client2, "secret2");
+        $hash = $this->encoder->encodePassword($client2, 'secret2');
         $client2->setName('ElectroDiscount')
             ->setStatus(1)
             ->setAddress('26 Avenue du faubourg')
@@ -137,7 +137,7 @@ class AppFixtures extends Fixture
         $manager->persist($client2);
 
         $client3 = new Client();
-        $hash = $this->encoder->encodePassword($client3, "secret3");
+        $hash = $this->encoder->encodePassword($client3, 'secret3');
         $client3->setName('Fnarty')
             ->setStatus(1)
             ->setAddress('12 Rue des Alpes')

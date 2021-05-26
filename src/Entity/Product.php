@@ -146,9 +146,9 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?int
     {
-        return number_format($this->price/100, 2);
+        return $this->price;
     }
 
     public function setPrice(int $price): self
@@ -170,24 +170,24 @@ class Product
         return $this;
     }
 
-    public function getCreatedDate(): ?\DateTimeImmutable
+    public function getCreatedDate(): ?DateTimeImmutable
     {
         return $this->createdDate;
     }
 
-    public function setCreatedDate(\DateTimeImmutable $createdDate): self
+    public function setCreatedDate(DateTimeImmutable $createdDate): self
     {
         $this->createdDate = $createdDate;
 
         return $this;
     }
 
-    public function getUpdatedDate(): ?\DateTimeImmutable
+    public function getUpdatedDate(): ?DateTimeImmutable
     {
         return $this->updatedDate;
     }
 
-    public function setUpdatedDate(?\DateTimeImmutable $updatedDate): self
+    public function setUpdatedDate(?DateTimeImmutable $updatedDate): self
     {
         $this->updatedDate = $updatedDate;
 
