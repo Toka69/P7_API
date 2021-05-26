@@ -6,7 +6,6 @@
 /public/bundles/
 /var/
 /vendor/
-/drivers/
 ###< symfony/framework-bundle ###
 
 /migrations/*
