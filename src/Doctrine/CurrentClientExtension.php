@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Doctrine;
-
 
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
@@ -24,7 +22,7 @@ class CurrentClientExtension implements QueryCollectionExtensionInterface, Query
     {
         $client = $this->security->getUser();
 
-        if($resourceClass === User::class)
+        if ($resourceClass === User::class)
         {
             $rootAlias = $queryBuilder->getRootAliases()[0];
             $queryBuilder->andWhere("$rootAlias.client = :client");
@@ -32,12 +30,14 @@ class CurrentClientExtension implements QueryCollectionExtensionInterface, Query
         }
     }
 
-    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
+    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator,
+                                      string $resourceClass, string $operationName = null)
     {
-        $this->addWhere($queryBuilder,$resourceClass);
+        $this->addWhere($queryBuilder, $resourceClass);
     }
 
-    public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, string $operationName = null, array $context = [])
+    public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator,
+                                string $resourceClass, array $identifiers, string $operationName = null, array $context = [])
     {
         $this->addWhere($queryBuilder,$resourceClass);
     }

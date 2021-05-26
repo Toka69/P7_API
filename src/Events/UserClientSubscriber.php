@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Events;
-
 
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\User;
@@ -32,7 +30,7 @@ class UserClientSubscriber implements EventSubscriberInterface
         $user = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if($user instanceof User && $method === "POST")
+        if ($user instanceof User && $method === "POST")
         {
             $client = $this->security->getUser();
             $user->setClient($client);
