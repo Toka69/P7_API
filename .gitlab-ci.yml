@@ -34,5 +34,6 @@ phpstan:
 phpunit:
   stage: UnitTests
   script:
+    - composer require --dev dbrekelmans/bdi && vendor/bin/bdi detect drivers
     - php bin/phpunit
   allow_failure: false
