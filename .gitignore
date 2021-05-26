@@ -8,6 +8,7 @@
 /vendor/
 /build/Dockerfile-Ubuntu
 /drivers/chromedriver
+/temp/
 ###< symfony/framework-bundle ###
 
 /migrations/*
