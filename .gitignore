@@ -6,9 +6,7 @@
 /public/bundles/
 /var/
 /vendor/
-/build/Dockerfile-Ubuntu
-/drivers/chromedriver
-/temp/
+/drivers/
 ###< symfony/framework-bundle ###
 
 /migrations/*
