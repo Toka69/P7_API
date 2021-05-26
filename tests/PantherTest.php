@@ -9,14 +9,14 @@ class PantherTest extends PantherTestCase
     public function testAnonymousUserCantAccessProducts():void
     {
         $client = static::createPantherClient();
-        $crawler = $client->request('GET', '/products');
+        $crawler = $client->request('GET', '/api/products');
         $this->assertStringContainsString('401', $crawler->text());
     }
 
     public function testAnonymousUserCantAccessUsers():void
     {
         $client = static::createPantherClient();
-        $crawler = $client->request('GET', '/users');
+        $crawler = $client->request('GET', '/api/users');
         $this->assertStringContainsString('401', $crawler->text());
     }
 }
