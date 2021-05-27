@@ -70,3 +70,30 @@ To build it:
    ```
    /build/docker-compose up -d
    ```
+### Test online
+
+The project is hosted online. It works as a demo, and the content is refresh everyday. Fixtures are reloaded and uploaded files are erased.
+So you can try it!
+
+https://p7.matthias-leroux.fr
+
+### Some requests
+
+To get a Token with the first user:
+   ```
+   POST /api/login_check
+   
+   Header 'Content-Type' = 'application/json',
+   Body JSON
+   {
+      "apiKey": "1234567890123456789012345678901234567890",
+      "secret": "secret1"
+   }
+   ```
+
+To get Products with the obtained token:
+   ```
+   GET /api/products
+   
+   Header 'Authorization' = 'Bearer $token'
+   ```
