@@ -25,8 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "normalization_context"={"groups"={"user_read"}}
  *          },
  *          "put",
- *          "delete",
- *          "patch"
+ *          "delete"
  *     }
  * )
  */
